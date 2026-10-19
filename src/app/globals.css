@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #effcf9;
+  --color-brand-100: #c9f5ec;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-navy-900: #0b1b3a;
+  --color-navy-800: #12264d;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #0f172a;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@keyframes pa-pulse-bar {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 0; }
+}
+
+.progress-stripes {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.18) 50%, rgba(255, 255, 255, 0.18) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+  animation: pa-pulse-bar 1s linear infinite;
+}

@@ -17,6 +17,8 @@ export interface AuditOptions {
   signal?: AbortSignal;
   /** Force the HTTP-only renderer (no Chromium). */
   staticOnly?: boolean;
+  /** Skip the private-network guard (e.g. auditing PilotAudit's own bundled demo site). */
+  allowPrivateHost?: boolean;
 }
 
 const LEAD_PAGE = /contact|book|appointment|schedule|request|consult|new-?patient|reserve|get-?started|forms?\b/i;
@@ -34,7 +36,7 @@ export async function runAudit(input: string, options: AuditOptions): Promise<Au
   const progress = options.onProgress ?? (() => undefined);
   const startedAt = new Date();
   const root = normalizeInputUrl(input);
-  await assertPublicHost(root);
+  if (!options.allowPrivateHost) await assertPublicHost(root);
   const notes: string[] = [];
 
   progress("fetch", `Launching renderer for ${root.host}`, 2);
